@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Untuk Kamu 🐼💗</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root{
+      --bg1:#ffd7ea;
+      --bg2:#fff0f7;
+      --bg3:#fff9fc;
+      --text:#6b4d5c;
+      --muted:#936f80;
+      --pink:#ff8fbd;
+      --pink2:#ff63a3;
+      --pink3:#ffc0dc;
+      --card:rgba(255,255,255,.86);
+      --line:rgba(255,255,255,.75);
+      --shadow:0 18px 50px rgba(255,143,189,.25);
+      --white:#fff;
+    }
+
+    body{
+      font-family:'Quicksand',sans-serif;
+      min-height:100vh;
+      overflow:hidden;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left,#ffc9e3 0%,transparent 24%),
+        radial-gradient(circle at top right,#ffe5f1 0%,transparent 22%),
+        radial-gradient(circle at bottom center,#ffd8eb 0%,transparent 24%),
+        linear-gradient(160deg,var(--bg1),var(--bg2),var(--bg3));
+    }
+
+    .floaters span{
+      position:fixed;
+      z-index:0;
+      pointer-events:none;
+      opacity:.85;
+      user-select:none;
+      animation:fall linear infinite;
+    }
+
+    @keyframes fall{
+      0%{transform:translateY(-12vh) rotate(0deg);opacity:0}
+      15%{opacity:.95}
+      100%{transform:translateY(110vh) rotate(18deg);opacity:0}
+    }
+
+    .topbar{
+      position:fixed;
+      top:14px;
+      right:14px;
+      z-index:5;
+      display:flex;
+      gap:8px;
+    }
+
+    .mini-btn{
+      border:none;
+      background:rgba(255,255,255,.72);
+      backdrop-filter:blur(10px);
+      border:1px solid rgba(255,255,255,.7);
+      color:#8b6175;
+      padding:10px 14px;
+      border-radius:999px;
+      font-weight:700;
+      cursor:pointer;
+      box-shadow:0 8px 20px rgba(255,143,189,.18);
+    }
+
+    .screen{
+      position:fixed;
+      inset:0;
+      z-index:2;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      transition:opacity .55s ease, transform .55s ease, visibility .55s ease;
+    }
+
+    .screen.hidden{
+      opacity:0;
+      visibility:hidden;
+      transform:scale(1.04);
+      pointer-events:none;
+    }
+
+    .card{
+      position:relative;
+      width:min(440px,100%);
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:32px;
+      backdrop-filter:blur(14px);
+      box-shadow:var(--shadow);
+      text-align:center;
+      padding:30px 22px 24px;
+      animation:pop .75s ease;
+      overflow:hidden;
+    }
+
+    @keyframes pop{
+      from{opacity:0;transform:translateY(25px) scale(.96)}
+      to{opacity:1;transform:translateY(0) scale(1)}
+    }
+
+    .badge{
+      display:inline-block;
+      padding:8px 14px;
+      border-radius:999px;
+      font-size:.82rem;
+      font-weight:700;
+      color:#fff;
+      background:linear-gradient(135deg,var(--pink),var(--pink2));
+      box-shadow:0 10px 20px rgba(255,99,163,.22);
+      margin-bottom:16px;
+    }
+
+    .sparkle{
+      position:absolute;
+      font-size:18px;
+      animation:spark 3s ease-in-out infinite;
+      opacity:.9;
+    }
+
+    .s1{top:18px;left:22px}
+    .s2{top:28px;right:28px;animation-delay:.7s}
+    .s3{bottom:22px;left:30px;animation-delay:1.2s}
+    .s4{bottom:20px;right:24px;animation-delay:1.7s}
+
+    @keyframes spark{
+      0%,100%{transform:translateY(0) scale(1)}
+      50%{transform:translateY(-8px) scale(1.15)}
+    }
+
+    .panda-wrap{
+      position:relative;
+      width:130px;
+      height:130px;
+      margin:0 auto 16px;
+      display:grid;
+      place-items:center;
+    }
+
+    .glow{
+      position:absolute;
+      width:104px;
+      height:104px;
+      border-radius:50%;
+      background:radial-gradient(circle,rgba(255,173,209,.9),transparent 70%);
+      animation:pulse 2s ease-in-out infinite;
+    }
+
+    .panda{
+      position:relative;
+      z-index:2;
+      font-size:84px;
+      filter:drop-shadow(0 10px 18px rgba(255,143,189,.25));
+      user-select:none;
+      display:inline-block;
+    }
+
+    .p1{animation:bounce 2s ease-in-out infinite}
+    .p2{animation:wiggle 1.8s ease-in-out infinite}
+    .p3{animation:spinCute 2.6s ease-in-out infinite}
+    .p4{animation:floatUp 2.2s ease-in-out infinite}
+    .p5{animation:nod 1.8s ease-in-out infinite}
+    .p6{animation:heartbeat 1.3s ease-in-out infinite}
+    .p7{animation:jumpCute 1.5s ease-in-out infinite}
+
+    @keyframes pulse{
+      0%,100%{transform:scale(1);opacity:.65}
+      50%{transform:scale(1.15);opacity:1}
+    }
+    @keyframes bounce{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-10px)}
+    }
+    @keyframes wiggle{
+      0%,100%{transform:rotate(0deg)}
+      25%{transform:rotate(-7deg)}
+      75%{transform:rotate(7deg)}
+    }
+    @keyframes spinCute{
+      0%,100%{transform:rotate(0deg) scale(1)}
+      25%{transform:rotate(-8deg) scale(1.03)}
+      50%{transform:rotate(0deg) scale(1.07)}
+      75%{transform:rotate(8deg) scale(1.03)}
+    }
+    @keyframes floatUp{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-14px)}
+    }
+    @keyframes nod{
+      0%,100%{transform:rotate(0deg)}
+      20%{transform:rotate(-5deg)}
+      40%{transform:rotate(5deg)}
+      60%{transform:rotate(-3deg)}
+      80%{transform:rotate(3deg)}
+    }
+    @keyframes heartbeat{
+      0%,100%{transform:scale(1)}
+      20%{transform:scale(1.1)}
+      40%{transform:scale(1)}
+      60%{transform:scale(1.12)}
+      80%{transform:scale(1)}
+    }
+    @keyframes jumpCute{
+      0%,100%{transform:translateY(0) scale(1)}
+      30%{transform:translateY(-16px) scale(1.03)}
+      50%{transform:translateY(0) scale(.98)}
+      70%{transform:translateY(-8px) scale(1.02)}
+    }
+
+    h1,h2{
+      font-family:'Fredoka',cursive;
+      color:#6d4e5d;
+      margin-bottom:10px;
+    }
+    h1{font-size:2rem}
+    h2{font-size:1.62rem}
+
+    p{
+      color:var(--muted);
+      line-height:1.82;
+      font-size:.99rem;
+    }
+
+    .name-input{
+      width:100%;
+      border:2px solid rgba(255,143,189,.22);
+      background:rgba(255,255,255,.92);
+      border-radius:18px;
+      padding:14px 16px;
+      outline:none;
+      font-size:1rem;
+      text-align:center;
+      color:#6b4d5b;
+      transition:.25s ease;
+      margin:16px 0 12px;
+      font-family:inherit;
+    }
+    .name-input:focus{
+      border-color:rgba(255,99,163,.6);
+      box-shadow:0 0 0 4px rgba(255,143,189,.12);
+    }
+
+    .box{
+      margin-top:16px;
+      padding:15px;
+      border-radius:20px;
+      background:rgba(255,255,255,.75);
+      border:1px dashed rgba(255,143,189,.4);
+      color:#7e5a6b;
+      line-height:1.9;
+      font-weight:600;
+    }
+
+    .btn-row{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top:18px;
+    }
+
+    .btn{
+      border:none;
+      min-height:52px;
+      border-radius:18px;
+      padding:0 18px;
+      font-size:1rem;
+      font-weight:700;
+      font-family:'Fredoka',cursive;
+      cursor:pointer;
+      transition:.25s ease;
+    }
+    .btn:hover{transform:translateY(-2px)}
+
+    .btn-primary{
+      color:#fff;
+      background:linear-gradient(135deg,var(--pink),var(--pink2));
+      box-shadow:0 12px 24px rgba(255,99,163,.24);
+    }
+
+    .btn-soft{
+      color:#8b6175;
+      background:rgba(255,255,255,.96);
+      border:1px solid rgba(255,143,189,.22);
+    }
+
+    .highlight{color:var(--pink2);font-weight:800}
+
+    .dots{
+      margin-top:16px;
+      display:flex;
+      justify-content:center;
+      gap:8px;
+    }
+    .dots span{
+      width:10px;height:10px;border-radius:50%;
+      background:rgba(255,143,189,.35);
+    }
+    .dots .active{
+      background:var(--pink2);
+      box-shadow:0 0 12px rgba(255,99,163,.35);
+    }
+
+    .tiny{
+      margin-top:10px;
+      font-size:.86rem;
+      color:#b08a99;
+    }
+
+    .choice{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-top:18px;
+    }
+
+    @media (max-width:420px){
+      .choice{grid-template-columns:1fr}
+      .topbar{top:10px;right:10px}
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <button class="mini-btn" id="musicBtn">🔊 Musik</button>
+  </div>
+
+  <div class="floaters" id="floaters"></div>
+
+  <audio id="bgm" loop playsinline>
+    <!-- GANTI link ini pakai link mp3 kamu sendiri -->
+    <source src="YOUR_AUDIO_LINK_HERE.mp3" type="audio/mpeg">
+  </audio>
+
+  <section class="screen" id="s1">
+    <div class="card">
+      <div class="sparkle s1">✨</div><div class="sparkle s2">💗</div><div class="sparkle s3">🌸</div><div class="sparkle s4">✨</div>
+      <div class="badge">mode panda level dewa 🐼</div>
+      <div class="panda-wrap"><div class="glow"></div><div class="panda p1">🐼</div></div>
+      <h1>Haiii kamuu</h1>
+      <p>Masukin nama kamu dulu yaa. Ada pesan kecil yang manis banget buat kamu 💕</p>
+      <input type="text" id="nameInput" class="name-input" placeholder="masukin nama kamu..." maxlength="20">
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="next1()">mulai yuk 👉</button>
+      </div>
+      <div class="dots"><span class="active"></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    </div>
+  </section>
+
+  <section class="screen hidden" id="s2">
+    <div class="card">
+      <div class="badge">halaman 2 💗</div>
+      <div class="panda-wrap"><div class="glow"></div><div class="panda p2">🐼</div></div>
+      <h2>Hai, <span class="highlight" id="n2">kamu</span> ✨</h2>
+      <div class="box">
+        Ada orang yang hadirnya terlihat sederhana,  
+        tapi pelan-pelan bikin hati merasa hangat.  
+        Dan anehnya... aku ngerasa itu kamu 🌸
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="go('s2','s3')">lanjut 💞</button>
+      </div>
+      <div class="dots"><span></span><span class="active"></span><span></span><span></span><span></span><span></span><span></span></div>
+    </div>
+  </section>
+
+  <section class="screen hidden" id="s3">
+    <div class="card">
+      <div class="badge">halaman 3 🎀</div>
+      <div class="panda-wrap"><div class="glow"></div><div class="panda p3">🐼</div></div>
+      <h2>Buat <span class="highlight" id="n3">kamu</span></h2>
+      <div class="box">
+        Kadang, hari yang capek bisa mendadak jadi lebih ringan  
+        cuma karena kepikiran nama kamu sebentar aja.  
+        Sesederhana itu, tapi manis banget rasanya ✨
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="go('s3','s4')">lanjut lagi 🌷</button>
+      </div>
+      <div class="dots"><span></span><span></span><span class="active"></span><span></span><span></span><span></span><span></span></div>
+    </div>
+  </section>
+
+  <section class="screen hidden" id="s4">
+    <div class="card">
+      <div class="badge">halaman 4 🌸</div>
+      <div class="panda-wrap"><div class="glow"></div><div class="panda p4">🐼</div></div>
+      <h2><span class="highlight" id="n4">Kamu</span> tau gak?</h2>
+      <div class="box">
+        Yang bikin seseorang menarik itu kadang bukan cuma wajah,  
+        tapi cara dia bikin suasana jadi nyaman.  
+        Dan kamu punya itu... tanpa perlu usaha berlebihan 💖
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="go('s4','s5')">masih ada 🤍</button>
+      </div>
+      <div class="dots"><span></span><span></span><span></span><span class="active"></span><span></span><span></span><span></span></div>
+    </div>
+  </section>
+
+  <section class="screen hidden" id="s5">
+    <div class="card">
+      <div class="badge">halaman 5 💫</div>
+      <div class="panda-wrap"><div class="glow"></div><div class="panda p5">🐼</div></div>
+      <h2>Sedikit jujur yaa</h2>
+      <div class="box">
+        Entah kenapa, ada rasa hangat tiap lihat <span class="highlight" id="n5">nama kamu</span>.  
+        Bukan sesuatu yang heboh, cuma perasaan kecil yang diam-diam bikin senyum datang sendiri 🫶
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="go('s5','s6')">lanjut terus 💗</button>
+      </div>
+      <div class="dots"><span></span><span></span><span></span><span></span><span class="active"></span><span></span><span></span></div>
+    </div>
+  </section>
+
+  <section class="screen hidden" id="s6">
+    <div class="card">
+      <div class="badge">halaman 6 🐼</div>
+      <div class="panda-wrap"><div class="glow"></div><div class="panda p6">🐼</div></div>
+      <h2>Buat <span class="highlight" id="n6">kamu</span> lagi</h2>
+      <div class="box">
+        Mungkin ini terdengar sederhana,  
+        tapi aku cuma mau bilang kalau kehadiran kamu tuh manis.  
+        Kayak hal kecil yang bikin hari biasa jadi lebih indah 🌷
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="go('s6','s7')">yang terakhir 💌</button>
+      </div>
+      <div class="dots"><span></span><span></span><span></span><span></span><span></span><span class="active"></span><span></span></div>
+    </div>
+  </section>
+
+  <section class="screen hidden" id="s7">
+    <div class="card">
+      <div class="badge">halaman terakhir 💖</div>
+      <div class="panda-wrap"><div class="glow"></div><div class="panda p7">🐼</div></div>
+      <h2>Terakhir nih, <span class="highlight" id="n7">kamu</span> ✨</h2>
+      <div class="box">
+        Jadi intinya... kamu itu spesial dengan cara yang susah dijelasin.  
+        Kalau kamu nyaman dan mau, kirim jawaban manis ke aku yaa 💗
+      </div>
+      <div class="choice">
+        <button class="btn btn-primary" onclick="kirimWA()">iya, aku mau 💞</button>
+        <button class="btn btn-soft" onclick="belumJawab()">belum bisa jawab 🌷</button>
+      </div>
+      <div class="tiny" id="noteText">musik bisa dinyalain dari tombol kanan atas ✨</div>
+      <div class="dots"><span></span><span></span><span></span><span></span><span></span><span></span><span class="active"></span></div>
+    </div>
+  </section>
+
+  <script>
+    const nomorWhatsApp = "6282310312670";
+    let currentName = "kamu";
+
+    const bgm = document.getElementById("bgm");
+    const musicBtn = document.getElementById("musicBtn");
+    let musicOn = false;
+
+    function setNames() {
+      ["n2","n3","n4","n5","n6","n7"].forEach(id => {
+        document.getElementById(id).textContent = currentName;
+      });
+    }
+
+    function next1() {
+      const raw = document.getElementById("nameInput").value.trim();
+      currentName = raw ? raw : "kamu";
+      setNames();
+      startMusic();
+      go("s1","s2");
+    }
+
+    function go(hideId, showId) {
+      document.getElementById(hideId).classList.add("hidden");
+      document.getElementById(showId).classList.remove("
