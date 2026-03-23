@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Untuk Kamu 💗</title>
+<title>Bucin Mode 💗</title>
 
 <style>
 body{
@@ -34,12 +34,32 @@ body{
   width:120px;
   height:120px;
   border-radius:50%;
-  background:url("https://i.imgur.com/3ZQ3Z4N.png") center/cover;
   margin:auto;
-  border:4px solid rgba(255,255,255,0.5);
+  overflow:hidden;
   box-shadow:0 0 25px rgba(255,255,255,0.5);
 }
 
+/* PANDA GIF */
+.avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* LOVE FLOAT */
+.heart{
+  position:absolute;
+  color:red;
+  font-size:20px;
+  animation:float 2s infinite;
+}
+
+@keyframes float{
+  0%{transform:translateY(0);opacity:1;}
+  100%{transform:translateY(-40px);opacity:0;}
+}
+
+/* BOX */
 .box{
   margin-top:20px;
   padding:20px;
@@ -70,7 +90,10 @@ body{
 
 <div class="container">
 
-  <div class="avatar"></div>
+  <!-- PANDA GIF LUCU -->
+  <div class="avatar">
+    <img src="https://media.tenor.com/4Xb9E4vZJpEAAAAC/panda-cute.gif">
+  </div>
 
   <div class="box" onclick="next()">
     <h2 id="text1">eh halo kamu 😆✨</h2>
@@ -86,40 +109,42 @@ let step=0;
 
 function next(){
 
+  createLove();
+
   step++;
 
   if(step==1){
     text1.innerHTML="eh serius bentar ya...";
-    text2.innerHTML="lu lagi sibuk ga sih sekarang 😅";
+    text2.innerHTML="lu lagi sibuk ga sih 😅";
   }
 
   else if(step==2){
     text1.innerHTML="soalnya gini...";
-    text2.innerHTML="gw rada kepikiran lu akhir akhir ini 😭";
+    text2.innerHTML="gw kepikiran lu terus 😭";
   }
 
   else if(step==3){
-    text1.innerHTML="aneh sih emang...";
-    text2.innerHTML="padahal cuma liat lu bentar aja bisa senyum sendiri 😳";
+    text1.innerHTML="jujur ya...";
+    text2.innerHTML="tiap liat lu tuh senyum sendiri 😳";
   }
 
   else if(step==4){
-    text1.innerHTML="dan jujur ya...";
-    text2.innerHTML="gw ngerasa nyaman banget sama lu 🫠";
+    text1.innerHTML="dan anehnya...";
+    text2.innerHTML="gw nyaman banget sama lu 🫠";
   }
 
   else if(step==5){
     text1.innerHTML="kayak...";
-    text2.innerHTML="lu tuh beda aja gitu dari yang lain 💗";
+    text2.innerHTML="lu tuh beda dari yang lain 💗";
   }
 
   else if(step==6){
     text1.innerHTML="jadi intinya...";
-    text2.innerHTML="kayaknya gw suka deh sama lu 🥺";
+    text2.innerHTML="gw suka sama lu 🥺";
   }
 
   else if(step==7){
-    text1.innerHTML="jadi gini aja ya...";
+    text1.innerHTML="jadi gini...";
     text2.innerHTML="lu mau ga jadi orang spesial gw? 💞";
   }
 
@@ -127,6 +152,18 @@ function next(){
     window.location.href="https://wa.me/6282310312670?text=jujur ya... gw juga suka sama lu 💗";
   }
 
+}
+
+/* efek love */
+function createLove(){
+  const heart=document.createElement("div");
+  heart.className="heart";
+  heart.innerHTML="💗";
+  heart.style.left=Math.random()*100+"%";
+  heart.style.top="50%";
+  document.body.appendChild(heart);
+
+  setTimeout(()=>heart.remove(),2000);
 }
 
 </script>
