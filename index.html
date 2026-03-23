@@ -1,172 +1,366 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bucin Mode 💗</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Untuk Kamu 💗</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-<style>
-body{
-  margin:0;
-  font-family:sans-serif;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e") no-repeat center/cover;
-}
+    body {
+      height: 100vh;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background:
+        linear-gradient(rgba(0,0,0,0.38), rgba(0,0,0,0.5)),
+        url("https://images.unsplash.com/photo-1516589091380-5d60156f0d81?auto=format&fit=crop&w=1200&q=80") center/cover no-repeat;
+    }
 
-.blur{
-  position:absolute;
-  inset:0;
-  backdrop-filter:blur(8px);
-  background:rgba(0,0,0,0.5);
-}
+    .blur {
+      position: absolute;
+      inset: 0;
+      backdrop-filter: blur(9px);
+      background: rgba(0,0,0,0.12);
+    }
 
-.container{
-  position:relative;
-  z-index:2;
-  text-align:center;
-  color:white;
-}
+    .container {
+      position: relative;
+      z-index: 2;
+      width: min(90vw, 340px);
+      text-align: center;
+      color: white;
+    }
 
-.avatar{
-  width:120px;
-  height:120px;
-  border-radius:50%;
-  margin:auto;
-  overflow:hidden;
-  box-shadow:0 0 25px rgba(255,255,255,0.5);
-}
+    .avatar-wrap {
+      position: relative;
+      width: 132px;
+      height: 132px;
+      margin: 0 auto 18px;
+    }
 
-/* PANDA GIF */
-.avatar img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
+    .glow {
+      position: absolute;
+      inset: 10px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,182,211,0.95), transparent 70%);
+      animation: pulse 2s infinite ease-in-out;
+    }
 
-/* LOVE FLOAT */
-.heart{
-  position:absolute;
-  color:red;
-  font-size:20px;
-  animation:float 2s infinite;
-}
+    .avatar {
+      position: relative;
+      width: 132px;
+      height: 132px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid rgba(255,255,255,0.45);
+      box-shadow: 0 0 28px rgba(255,255,255,0.35);
+      background: #fff;
+      animation: bounce 2s infinite ease-in-out;
+    }
 
-@keyframes float{
-  0%{transform:translateY(0);opacity:1;}
-  100%{transform:translateY(-40px);opacity:0;}
-}
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
 
-/* BOX */
-.box{
-  margin-top:20px;
-  padding:20px;
-  border-radius:20px;
-  background:rgba(255,255,255,0.1);
-  backdrop-filter:blur(10px);
-  width:260px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.6);
-  cursor:pointer;
-  transition:0.3s;
-}
+    .box {
+      padding: 22px 18px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.22);
+      box-shadow: 0 10px 35px rgba(0,0,0,0.35);
+      cursor: pointer;
+      transition: .25s ease;
+      user-select: none;
+    }
 
-.box:hover{
-  transform:scale(1.05);
-}
+    .box:hover {
+      transform: scale(1.02);
+    }
 
-.small{
-  font-size:12px;
-  opacity:0.7;
-  margin-top:10px;
-}
-</style>
+    h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.22);
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.88);
+      min-height: 58px;
+    }
+
+    .small {
+      margin-top: 10px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.72);
+    }
+
+    .choice {
+      display: none;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    button {
+      border: none;
+      min-height: 46px;
+      border-radius: 16px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .yes {
+      background: linear-gradient(135deg, #ff8fbd, #ff5fa2);
+      color: white;
+      box-shadow: 0 10px 24px rgba(255,95,162,0.32);
+    }
+
+    .later {
+      background: rgba(255,255,255,0.94);
+      color: #7a4d64;
+    }
+
+    .note {
+      margin-top: 10px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.78);
+      min-height: 18px;
+    }
+
+    .progress {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.35);
+      transition: .25s ease;
+    }
+
+    .dot.active {
+      width: 22px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #ff8fbd, #ff5fa2);
+      box-shadow: 0 0 12px rgba(255,95,162,0.55);
+    }
+
+    .heart {
+      position: fixed;
+      pointer-events: none;
+      z-index: 1;
+      font-size: 20px;
+      animation: heartUp 2s linear forwards;
+    }
+
+    @keyframes pulse {
+      0%,100% { transform: scale(1); opacity: .65; }
+      50% { transform: scale(1.14); opacity: 1; }
+    }
+
+    @keyframes bounce {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes wiggle {
+      0%,100% { transform: rotate(0deg); }
+      25% { transform: rotate(-7deg); }
+      75% { transform: rotate(7deg); }
+    }
+
+    @keyframes nod {
+      0%,100% { transform: rotate(0deg); }
+      50% { transform: rotate(-8deg); }
+    }
+
+    @keyframes pop {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    @keyframes floaty {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-13px); }
+    }
+
+    @keyframes heartUp {
+      0% { transform: translateY(0) scale(.8); opacity: 0; }
+      20% { opacity: 1; }
+      100% { transform: translateY(-90px) scale(1.2); opacity: 0; }
+    }
+
+    @media (max-width: 420px) {
+      .choice {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="blur"></div>
 
-<div class="blur"></div>
+  <div class="container">
+    <div class="avatar-wrap">
+      <div class="glow"></div>
+      <div class="avatar" id="avatarBox">
+        <img id="panda" src="https://media.tenor.com/4Xb9E4vZJpEAAAAC/panda-cute.gif" alt="Panda lucu">
+      </div>
+    </div>
 
-<div class="container">
+    <div class="box" id="card" onclick="nextStep()">
+      <h2 id="title">hai, kamu 🤍</h2>
+      <p id="desc">aku cuma mau nyampein sesuatu... pelan-pelan ya.</p>
+      <div class="small" id="smallText">klik lagi kalau kamu mau lanjut ✨</div>
 
-  <!-- PANDA GIF LUCU -->
-  <div class="avatar">
-    <img src="https://media.tenor.com/4Xb9E4vZJpEAAAAC/panda-cute.gif">
+      <div class="choice" id="choiceBox">
+        <button class="yes" onclick="sendWA(event)">aku mau jawab 💗</button>
+        <button class="later" onclick="laterReply(event)">aku simpan dulu ya 🌷</button>
+      </div>
+
+      <div class="note" id="note"></div>
+
+      <div class="progress">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
   </div>
 
-  <div class="box" onclick="next()">
-    <h2 id="text1">eh halo kamu 😆✨</h2>
-    <p id="text2">gw mau ngomong sesuatu nih...</p>
-    <div class="small">klik pelan ya 😳</div>
-  </div>
+  <script>
+    const panda = document.getElementById("panda");
+    const avatarBox = document.getElementById("avatarBox");
+    const titleEl = document.getElementById("title");
+    const descEl = document.getElementById("desc");
+    const smallText = document.getElementById("smallText");
+    const choiceBox = document.getElementById("choiceBox");
+    const noteEl = document.getElementById("note");
+    const dots = document.querySelectorAll(".dot");
 
-</div>
+    const waNumber = "6282310312670";
+    let step = 0;
 
-<script>
+    const pandaImages = [
+      "https://media.tenor.com/4Xb9E4vZJpEAAAAC/panda-cute.gif",
+      "https://media.tenor.com/W4b9uH9Z9nQAAAAC/panda-love.gif",
+      "https://media.tenor.com/Z9m7S3n7RzQAAAAC/panda-heart.gif",
+      "https://media.tenor.com/4Xb9E4vZJpEAAAAC/panda-cute.gif",
+      "https://media.tenor.com/W4b9uH9Z9nQAAAAC/panda-love.gif",
+      "https://media.tenor.com/Z9m7S3n7RzQAAAAC/panda-heart.gif",
+      "https://media.tenor.com/4Xb9E4vZJpEAAAAC/panda-cute.gif"
+    ];
 
-let step=0;
+    const slides = [
+      {
+        title: "sebenernya...",
+        desc: "akhir-akhir ini aku sering kepikiran kamu tanpa alasan yang jelas.",
+        anim: "bounce"
+      },
+      {
+        title: "dan lucunya...",
+        desc: "kadang cuma lihat kamu sebentar aja, suasana hati aku langsung berubah jadi lebih baik.",
+        anim: "wiggle"
+      },
+      {
+        title: "aku gak tau kenapa...",
+        desc: "tapi ada rasa nyaman yang susah dijelasin setiap kali aku inget kamu.",
+        anim: "nod"
+      },
+      {
+        title: "kayak gini loh...",
+        desc: "kamu itu bukan cuma bikin aku senyum, tapi juga bikin hari yang biasa jadi terasa lebih manis.",
+        anim: "pop"
+      },
+      {
+        title: "mungkin terdengar sederhana...",
+        desc: "tapi kehadiran kamu tuh kerasa spesial. pelan, tapi nyampe banget di hati aku.",
+        anim: "floaty"
+      },
+      {
+        title: "jadi aku jujur aja ya...",
+        desc: "aku suka kamu. bukan karena sesaat, tapi karena kamu punya cara yang bikin hati aku tenang.",
+        anim: "bounce"
+      },
+      {
+        title: "kalau kamu berkenan...",
+        desc: "aku pengen tahu, boleh gak aku jadi seseorang yang lebih dekat sama kamu? 💗",
+        anim: "pop",
+        final: true
+      }
+    ];
 
-function next(){
+    function updateDots(index) {
+      dots.forEach((dot, i) => {
+        dot.classList.toggle("active", i === index);
+      });
+    }
 
-  createLove();
+    function setAvatarAnim(name) {
+      avatarBox.style.animation = "none";
+      void avatarBox.offsetWidth;
+      avatarBox.style.animation = `${name} 1.8s ease-in-out infinite`;
+    }
 
-  step++;
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.textContent = "💗";
+      heart.style.left = `${15 + Math.random() * 70}%`;
+      heart.style.top = `${55 + Math.random() * 15}%`;
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 2000);
+    }
 
-  if(step==1){
-    text1.innerHTML="eh serius bentar ya...";
-    text2.innerHTML="lu lagi sibuk ga sih 😅";
-  }
+    function nextStep() {
+      createHeart();
 
-  else if(step==2){
-    text1.innerHTML="soalnya gini...";
-    text2.innerHTML="gw kepikiran lu terus 😭";
-  }
+      if (step >= slides.length) return;
 
-  else if(step==3){
-    text1.innerHTML="jujur ya...";
-    text2.innerHTML="tiap liat lu tuh senyum sendiri 😳";
-  }
+      const current = slides[step];
+      titleEl.textContent = current.title;
+      descEl.textContent = current.desc;
+      panda.src = pandaImages[step] || pandaImages[0];
+      setAvatarAnim(current.anim);
+      updateDots(step);
 
-  else if(step==4){
-    text1.innerHTML="dan anehnya...";
-    text2.innerHTML="gw nyaman banget sama lu 🫠";
-  }
+      if (current.final) {
+        smallText.style.display = "none";
+        choiceBox.style.display = "grid";
+        noteEl.textContent = "jawab sesuai yang paling nyaman buat kamu ya ✨";
+      }
 
-  else if(step==5){
-    text1.innerHTML="kayak...";
-    text2.innerHTML="lu tuh beda dari yang lain 💗";
-  }
+      step++;
+    }
 
-  else if(step==6){
-    text1.innerHTML="jadi intinya...";
-    text2.innerHTML="gw suka sama lu 🥺";
-  }
+    function sendWA(e) {
+      e.stopPropagation();
+      const text = "aku juga nyaman sama kamu 💗";
+      window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(text)}`, "_blank");
+    }
 
-  else if(step==7){
-    text1.innerHTML="jadi gini...";
-    text2.innerHTML="lu mau ga jadi orang spesial gw? 💞";
-  }
-
-  else if(step==8){
-    window.location.href="https://wa.me/6282310312670?text=jujur ya... gw juga suka sama lu 💗";
-  }
-
-}
-
-/* efek love */
-function createLove(){
-  const heart=document.createElement("div");
-  heart.className="heart";
-  heart.innerHTML="💗";
-  heart.style.left=Math.random()*100+"%";
-  heart.style.top="50%";
-  document.body.appendChild(heart);
-
-  setTimeout(()=>heart.remove(),2000);
-}
-
-</script>
-
+    function laterReply(e) {
+      e.stopPropagation();
+      noteEl.textContent = "gapapa, makasih ya udah baca sampai akhir 🌷";
+    }
+  </script>
 </body>
 </html>
