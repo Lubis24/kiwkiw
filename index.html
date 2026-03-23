@@ -1,555 +1,135 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Untuk Kamu 🐼💗</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untuk Kamu 💗</title>
 
-    :root {
-      --bg1: #ffd9ec;
-      --bg2: #fff1f7;
-      --bg3: #fff9fc;
-      --text: #6b4d5c;
-      --muted: #8f6f7d;
-      --pink: #ff8fbd;
-      --pink2: #ff63a3;
-      --card: rgba(255,255,255,0.88);
-      --line: rgba(255,255,255,0.78);
-      --shadow: 0 18px 45px rgba(255,143,189,0.25);
-    }
+<style>
+body{
+  margin:0;
+  font-family:sans-serif;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e") no-repeat center/cover;
+}
 
-    body {
-      font-family: 'Quicksand', sans-serif;
-      min-height: 100vh;
-      overflow: hidden;
-      color: var(--text);
-      background:
-        radial-gradient(circle at top left, #ffc9e3 0%, transparent 24%),
-        radial-gradient(circle at top right, #ffe1ef 0%, transparent 22%),
-        radial-gradient(circle at bottom center, #ffd6e8 0%, transparent 24%),
-        linear-gradient(160deg, var(--bg1), var(--bg2), var(--bg3));
-    }
+.blur{
+  position:absolute;
+  inset:0;
+  backdrop-filter:blur(8px);
+  background:rgba(0,0,0,0.5);
+}
 
-    .floaters span {
-      position: fixed;
-      z-index: 0;
-      pointer-events: none;
-      animation: fall linear infinite;
-      opacity: 0.85;
-      user-select: none;
-    }
+.container{
+  position:relative;
+  z-index:2;
+  text-align:center;
+  color:white;
+}
 
-    @keyframes fall {
-      0% { transform: translateY(-12vh) rotate(0deg); opacity: 0; }
-      15% { opacity: 0.95; }
-      100% { transform: translateY(110vh) rotate(18deg); opacity: 0; }
-    }
+.avatar{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  background:url("https://i.imgur.com/3ZQ3Z4N.png") center/cover;
+  margin:auto;
+  border:4px solid rgba(255,255,255,0.5);
+  box-shadow:0 0 25px rgba(255,255,255,0.5);
+}
 
-    .topbar {
-      position: fixed;
-      top: 12px;
-      right: 12px;
-      z-index: 5;
-    }
+.box{
+  margin-top:20px;
+  padding:20px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.1);
+  backdrop-filter:blur(10px);
+  width:260px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.6);
+  cursor:pointer;
+  transition:0.3s;
+}
 
-    .music-btn {
-      border: none;
-      background: rgba(255,255,255,0.8);
-      border: 1px solid rgba(255,255,255,0.8);
-      color: #8b6175;
-      padding: 10px 14px;
-      border-radius: 999px;
-      font-weight: 700;
-      cursor: pointer;
-      box-shadow: 0 8px 20px rgba(255,143,189,0.18);
-    }
+.box:hover{
+  transform:scale(1.05);
+}
 
-    .screen {
-      position: fixed;
-      inset: 0;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      transition: opacity 0.45s ease, transform 0.45s ease;
-    }
-
-    .hidden {
-      opacity: 0;
-      pointer-events: none;
-      transform: scale(1.03);
-    }
-
-    .card {
-      position: relative;
-      width: min(430px, 100%);
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 30px;
-      text-align: center;
-      padding: 28px 22px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(12px);
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 8px 14px;
-      border-radius: 999px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: #fff;
-      background: linear-gradient(135deg, var(--pink), var(--pink2));
-      margin-bottom: 16px;
-    }
-
-    .panda-wrap {
-      position: relative;
-      width: 120px;
-      height: 120px;
-      margin: 0 auto 16px;
-      display: grid;
-      place-items: center;
-    }
-
-    .glow {
-      position: absolute;
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,173,209,0.9), transparent 70%);
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    .panda {
-      position: relative;
-      z-index: 2;
-      font-size: 78px;
-      display: inline-block;
-      user-select: none;
-      filter: drop-shadow(0 10px 18px rgba(255,143,189,0.25));
-    }
-
-    .p1 { animation: bounce 2s infinite; }
-    .p2 { animation: wiggle 1.8s infinite; }
-    .p3 { animation: spinCute 2.5s infinite; }
-    .p4 { animation: floatUp 2.2s infinite; }
-    .p5 { animation: nod 1.8s infinite; }
-    .p6 { animation: heartbeat 1.3s infinite; }
-    .p7 { animation: jumpCute 1.5s infinite; }
-
-    @keyframes pulse {
-      0%,100% { transform: scale(1); opacity: 0.65; }
-      50% { transform: scale(1.15); opacity: 1; }
-    }
-
-    @keyframes bounce {
-      0%,100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    @keyframes wiggle {
-      0%,100% { transform: rotate(0deg); }
-      25% { transform: rotate(-7deg); }
-      75% { transform: rotate(7deg); }
-    }
-
-    @keyframes spinCute {
-      0%,100% { transform: rotate(0deg) scale(1); }
-      25% { transform: rotate(-8deg) scale(1.03); }
-      50% { transform: rotate(0deg) scale(1.07); }
-      75% { transform: rotate(8deg) scale(1.03); }
-    }
-
-    @keyframes floatUp {
-      0%,100% { transform: translateY(0); }
-      50% { transform: translateY(-14px); }
-    }
-
-    @keyframes nod {
-      0%,100% { transform: rotate(0deg); }
-      20% { transform: rotate(-5deg); }
-      40% { transform: rotate(5deg); }
-      60% { transform: rotate(-3deg); }
-      80% { transform: rotate(3deg); }
-    }
-
-    @keyframes heartbeat {
-      0%,100% { transform: scale(1); }
-      20% { transform: scale(1.1); }
-      40% { transform: scale(1); }
-      60% { transform: scale(1.12); }
-      80% { transform: scale(1); }
-    }
-
-    @keyframes jumpCute {
-      0%,100% { transform: translateY(0) scale(1); }
-      30% { transform: translateY(-16px) scale(1.03); }
-      50% { transform: translateY(0) scale(0.98); }
-      70% { transform: translateY(-8px) scale(1.02); }
-    }
-
-    h1, h2 {
-      font-family: 'Fredoka', cursive;
-      color: #6d4e5d;
-      margin-bottom: 10px;
-    }
-
-    h1 { font-size: 1.95rem; }
-    h2 { font-size: 1.58rem; }
-
-    p {
-      color: var(--muted);
-      line-height: 1.82;
-      font-size: 0.98rem;
-    }
-
-    .name-input {
-      width: 100%;
-      border: 2px solid rgba(255,143,189,0.22);
-      background: rgba(255,255,255,0.92);
-      border-radius: 18px;
-      padding: 14px 16px;
-      outline: none;
-      font-size: 1rem;
-      text-align: center;
-      color: #6b4d5b;
-      margin: 16px 0 12px;
-      font-family: inherit;
-    }
-
-    .box {
-      margin-top: 16px;
-      padding: 15px;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.75);
-      border: 1px dashed rgba(255,143,189,0.4);
-      color: #7e5a6b;
-      line-height: 1.9;
-      font-weight: 600;
-    }
-
-    .btn-row {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 18px;
-    }
-
-    .btn {
-      border: none;
-      min-height: 50px;
-      border-radius: 18px;
-      padding: 0 18px;
-      font-size: 1rem;
-      font-weight: 700;
-      font-family: 'Fredoka', cursive;
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      color: #fff;
-      background: linear-gradient(135deg, var(--pink), var(--pink2));
-      box-shadow: 0 12px 24px rgba(255,99,163,0.24);
-    }
-
-    .btn-soft {
-      color: #8b6175;
-      background: rgba(255,255,255,0.96);
-      border: 1px solid rgba(255,143,189,0.22);
-    }
-
-    .dots {
-      margin-top: 16px;
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .dots span {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(255,143,189,0.35);
-    }
-
-    .dots .active {
-      background: var(--pink2);
-      box-shadow: 0 0 12px rgba(255,99,163,0.35);
-    }
-
-    .tiny {
-      margin-top: 10px;
-      font-size: 0.86rem;
-      color: #b08a99;
-    }
-
-    .choice {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 18px;
-    }
-
-    .highlight {
-      color: var(--pink2);
-      font-weight: 800;
-    }
-
-    @media (max-width: 420px) {
-      .choice {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+.small{
+  font-size:12px;
+  opacity:0.7;
+  margin-top:10px;
+}
+</style>
 </head>
+
 <body>
 
-  <div class="topbar">
-    <button class="music-btn" id="musicBtn">🔈 Musik</button>
+<div class="blur"></div>
+
+<div class="container">
+
+  <div class="avatar"></div>
+
+  <div class="box" onclick="next()">
+    <h2 id="text1">eh halo kamu 😆✨</h2>
+    <p id="text2">gw mau ngomong sesuatu nih...</p>
+    <div class="small">klik pelan ya 😳</div>
   </div>
 
-  <div class="floaters" id="floaters"></div>
+</div>
 
-  <audio id="bgm" loop playsinline>
-    <source src="YOUR_AUDIO_LINK_HERE.mp3" type="audio/mpeg">
-  </audio>
+<script>
 
-  <section class="screen" id="s1">
-    <div class="card">
-      <div class="badge">mode panda imut 🐼</div>
-      <div class="panda-wrap">
-        <div class="glow"></div>
-        <div class="panda p1">🐼</div>
-      </div>
-      <h1>Haiii kamuu</h1>
-      <p>Masukin nama kamu dulu yaa, biar pesan kecil ini terasa lebih spesial 💕</p>
-      <input type="text" id="nameInput" class="name-input" placeholder="masukin nama kamu..." maxlength="20">
-      <div class="btn-row">
-        <button class="btn btn-primary" onclick="next1()">mulai yuk 👉</button>
-      </div>
-      <div class="dots">
-        <span class="active"></span><span></span><span></span><span></span><span></span><span></span><span></span>
-      </div>
-    </div>
-  </section>
+let step=0;
 
-  <section class="screen hidden" id="s2">
-    <div class="card">
-      <div class="badge">halaman 2 💗</div>
-      <div class="panda-wrap">
-        <div class="glow"></div>
-        <div class="panda p2">🐼</div>
-      </div>
-      <h2>Hai, <span class="highlight" id="n2">kamu</span> ✨</h2>
-      <div class="box">
-        Ada orang yang hadirnya terlihat sederhana, tapi pelan-pelan bikin hati merasa hangat. Dan anehnya... aku ngerasa itu kamu 🌸
-      </div>
-      <div class="btn-row">
-        <button class="btn btn-primary" onclick="go('s2','s3')">lanjut 💞</button>
-      </div>
-      <div class="dots">
-        <span></span><span class="active"></span><span></span><span></span><span></span><span></span><span></span>
-      </div>
-    </div>
-  </section>
+function next(){
 
-  <section class="screen hidden" id="s3">
-    <div class="card">
-      <div class="badge">halaman 3 🎀</div>
-      <div class="panda-wrap">
-        <div class="glow"></div>
-        <div class="panda p3">🐼</div>
-      </div>
-      <h2>Buat <span class="highlight" id="n3">kamu</span></h2>
-      <div class="box">
-        Kadang, hari yang capek bisa mendadak jadi lebih ringan cuma karena kepikiran nama kamu sebentar aja. Sesederhana itu, tapi manis banget rasanya ✨
-      </div>
-      <div class="btn-row">
-        <button class="btn btn-primary" onclick="go('s3','s4')">lanjut lagi 🌷</button>
-      </div>
-      <div class="dots">
-        <span></span><span></span><span class="active"></span><span></span><span></span><span></span><span></span>
-      </div>
-    </div>
-  </section>
+  step++;
 
-  <section class="screen hidden" id="s4">
-    <div class="card">
-      <div class="badge">halaman 4 🌸</div>
-      <div class="panda-wrap">
-        <div class="glow"></div>
-        <div class="panda p4">🐼</div>
-      </div>
-      <h2><span class="highlight" id="n4">Kamu</span> tau gak?</h2>
-      <div class="box">
-        Yang bikin seseorang menarik itu kadang bukan cuma wajah, tapi cara dia bikin suasana jadi nyaman. Dan kamu punya itu... tanpa perlu usaha berlebihan 💖
-      </div>
-      <div class="btn-row">
-        <button class="btn btn-primary" onclick="go('s4','s5')">masih ada 🤍</button>
-      </div>
-      <div class="dots">
-        <span></span><span></span><span></span><span class="active"></span><span></span><span></span><span></span>
-      </div>
-    </div>
-  </section>
+  if(step==1){
+    text1.innerHTML="eh serius bentar ya...";
+    text2.innerHTML="lu lagi sibuk ga sih sekarang 😅";
+  }
 
-  <section class="screen hidden" id="s5">
-    <div class="card">
-      <div class="badge">halaman 5 💫</div>
-      <div class="panda-wrap">
-        <div class="glow"></div>
-        <div class="panda p5">🐼</div>
-      </div>
-      <h2>Sedikit jujur yaa</h2>
-      <div class="box">
-        Entah kenapa, ada rasa hangat tiap lihat <span class="highlight" id="n5">nama kamu</span>. Bukan sesuatu yang heboh, cuma perasaan kecil yang diam-diam bikin senyum datang sendiri 🫶
-      </div>
-      <div class="btn-row">
-        <button class="btn btn-primary" onclick="go('s5','s6')">lanjut terus 💗</button>
-      </div>
-      <div class="dots">
-        <span></span><span></span><span></span><span></span><span class="active"></span><span></span><span></span>
-      </div>
-    </div>
-  </section>
+  else if(step==2){
+    text1.innerHTML="soalnya gini...";
+    text2.innerHTML="gw rada kepikiran lu akhir akhir ini 😭";
+  }
 
-  <section class="screen hidden" id="s6">
-    <div class="card">
-      <div class="badge">halaman 6 🐼</div>
-      <div class="panda-wrap">
-        <div class="glow"></div>
-        <div class="panda p6">🐼</div>
-      </div>
-      <h2>Buat <span class="highlight" id="n6">kamu</span> lagi</h2>
-      <div class="box">
-        Mungkin ini terdengar sederhana, tapi aku cuma mau bilang kalau kehadiran kamu tuh manis. Kayak hal kecil yang bikin hari biasa jadi lebih indah 🌷
-      </div>
-      <div class="btn-row">
-        <button class="btn btn-primary" onclick="go('s6','s7')">yang terakhir 💌</button>
-      </div>
-      <div class="dots">
-        <span></span><span></span><span></span><span></span><span></span><span class="active"></span><span></span>
-      </div>
-    </div>
-  </section>
+  else if(step==3){
+    text1.innerHTML="aneh sih emang...";
+    text2.innerHTML="padahal cuma liat lu bentar aja bisa senyum sendiri 😳";
+  }
 
-  <section class="screen hidden" id="s7">
-    <div class="card">
-      <div class="badge">halaman terakhir 💖</div>
-      <div class="panda-wrap">
-        <div class="glow"></div>
-        <div class="panda p7">🐼</div>
-      </div>
-      <h2>Terakhir nih, <span class="highlight" id="n7">kamu</span> ✨</h2>
-      <div class="box">
-        Jadi intinya... kamu itu spesial dengan cara yang susah dijelasin. Kalau kamu nyaman dan mau, kirim jawaban manis ke aku yaa 💗
-      </div>
-      <div class="choice">
-        <button class="btn btn-primary" onclick="kirimWA()">iya, aku mau 💞</button>
-        <button class="btn btn-soft" onclick="belumJawab()">belum bisa jawab 🌷</button>
-      </div>
-      <div class="tiny" id="noteText">musik bisa dinyalain dari tombol kanan atas ✨</div>
-      <div class="dots">
-        <span></span><span></span><span></span><span></span><span></span><span></span><span class="active"></span>
-      </div>
-    </div>
-  </section>
+  else if(step==4){
+    text1.innerHTML="dan jujur ya...";
+    text2.innerHTML="gw ngerasa nyaman banget sama lu 🫠";
+  }
 
-  <script>
-    const nomorWhatsApp = "6282310312670";
-    let currentName = "kamu";
+  else if(step==5){
+    text1.innerHTML="kayak...";
+    text2.innerHTML="lu tuh beda aja gitu dari yang lain 💗";
+  }
 
-    const bgm = document.getElementById("bgm");
-    const musicBtn = document.getElementById("musicBtn");
-    let musicOn = false;
+  else if(step==6){
+    text1.innerHTML="jadi intinya...";
+    text2.innerHTML="kayaknya gw suka deh sama lu 🥺";
+  }
 
-    function setNames() {
-      const ids = ["n2", "n3", "n4", "n5", "n6", "n7"];
-      ids.forEach(function(id) {
-        document.getElementById(id).textContent = currentName;
-      });
-    }
+  else if(step==7){
+    text1.innerHTML="jadi gini aja ya...";
+    text2.innerHTML="lu mau ga jadi orang spesial gw? 💞";
+  }
 
-    function next1() {
-      const input = document.getElementById("nameInput");
-      const raw = input.value.trim();
-      currentName = raw ? raw : "kamu";
-      setNames();
-      startMusic();
-      go("s1", "s2");
-    }
+  else if(step==8){
+    window.location.href="https://wa.me/6282310312670?text=jujur ya... gw juga suka sama lu 💗";
+  }
 
-    function go(hideId, showId) {
-      document.getElementById(hideId).classList.add("hidden");
-      document.getElementById(showId).classList.remove("hidden");
-      startMusic();
-    }
+}
 
-    function kirimWA() {
-      const pesan = "Hai, ini aku 💗 Jujur ya... web tadi manis banget. Dan aku senyum bacanya 🌷";
-      const url = "https://wa.me/" + nomorWhatsApp + "?text=" + encodeURIComponent(pesan);
-      window.open(url, "_blank");
-    }
-
-    function belumJawab() {
-      document.getElementById("noteText").textContent = "Gapapa kok " + currentName + ", makasih udah baca sampai akhir 🌸";
-    }
-
-    function startMusic() {
-      if (!bgm) return;
-      bgm.play().then(function() {
-        musicOn = true;
-        musicBtn.textContent = "🔊 Musik";
-      }).catch(function() {});
-    }
-
-    function toggleMusic() {
-      if (!bgm) return;
-      if (musicOn) {
-        bgm.pause();
-        musicOn = false;
-        musicBtn.textContent = "🔈 Musik";
-      } else {
-        bgm.play().then(function() {
-          musicOn = true;
-          musicBtn.textContent = "🔊 Musik";
-        }).catch(function() {});
-      }
-    }
-
-    musicBtn.addEventListener("click", toggleMusic);
-    document.body.addEventListener("click", startMusic);
-    document.body.addEventListener("touchstart", startMusic, { passive: true });
-
-    function createFloater(icon) {
-      const el = document.createElement("span");
-      el.textContent = icon;
-      el.style.left = (Math.random() * 100) + "vw";
-      el.style.animationDuration = (5 + Math.random() * 4) + "s";
-      el.style.fontSize = (16 + Math.random() * 16) + "px";
-      document.getElementById("floaters").appendChild(el);
-      setTimeout(function() {
-        el.remove();
-      }, 9000);
-    }
-
-    const icons = ["💗", "✨", "🌸", "🎀"];
-    setInterval(function() {
-      const icon = icons[Math.floor(Math.random() * icons.length)];
-      createFloater(icon);
-    }, 550);
-  </script>
+</script>
 
 </body>
-      </html>            
+</html>
